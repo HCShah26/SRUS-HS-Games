@@ -2,11 +2,11 @@
 ## Double Linked List Implementation
 This project demonstrates the implementation of a Double Linked List in Python. This version is based on a Player Linked List that has a header and tail node. 
 
-The PlayerList store a list PlayerNodes which all have next and a previous reference point to the other nodes in the list. This helps to track all the nodes in the list.
+The **PlayerList** stores a list **PlayerNodes** which all have next and a previous reference point to the other nodes in the list. This helps to track all the nodes in the list.
 
-The PlayerNode store the Player data (Unique Identifier and Name)
+The **PlayerNode** stores the **Player** data (Unique Identifier and Name)
 
-The Player class has an initialiser method and two getters and a print method
+The **Player** class has an initialiser method and two getters and a print method
 
 The PlayerNode has an initialise method and the getters and setters methods and also a print method to display the contents of a node
 The PlayerList has the following methods
