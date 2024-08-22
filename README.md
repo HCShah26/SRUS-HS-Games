@@ -8,8 +8,9 @@ The **PlayerNode** stores the **Player** data (Unique Identifier and Name)
 
 The **Player** class has an initialiser method and two getters and a print method
 
-The PlayerNode has an initialise method and the getters and setters methods and also a print method to display the contents of a node
-The PlayerList has the following methods
+The **PlayerNode** has an initialise method and the getters and setters methods and also a print method to display the contents of a node
+
+The **PlayerList** has the following methods
 
 **initaliser** to set up an empty PlayerList
 
