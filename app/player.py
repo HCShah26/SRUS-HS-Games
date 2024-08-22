@@ -1,4 +1,16 @@
+
 class Player:
+    """
+    Player class that has two properties
+    1. UniqueID of type string
+    2. Player Name of type string
+
+    This class has a initialise method to instantiate the Player object
+    which takes two inputs unique_id and player_name
+    and has two Get methods to return the data
+    a) uid that returns string
+    b) name that returns string
+    """
 
     def __init__(self, unique_id: str, player_name: str) -> None:
         self._uid = unique_id

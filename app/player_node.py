@@ -2,11 +2,13 @@ from app.player import Player
 
 
 class PlayerNode:
+    """
 
+    """
     def __init__(self, player: Player):
         self._player = player
-        self._nextNode = None
-        self._prevNode = None
+        self._nextplayer = None
+        self._prevplayer = None
 
     @property
     def player(self) -> Player:
@@ -18,19 +20,19 @@ class PlayerNode:
 
     @property
     def next(self) -> 'PlayerNode':
-        return self._nextNode
+        return self._nextplayer
 
     @next.setter
     def next(self, value: 'PlayerNode'):
-        self._nextNode = value
+        self._nextplayer = value
 
     @property
     def prev(self) -> 'PlayerNode':
-        return self._prevNode
+        return self._prevplayer
 
     @prev.setter
     def prev(self, value: 'PlayerNode'):
-        self._prevNode = value
+        self._prevplayer = value
 
     @property
     def key(self) -> str:
