@@ -10,14 +10,23 @@ The Player class has an initialiser method and two getters and a print method
 
 The PlayerNode has an initialise method and the getters and setters methods and also a print method to display the contents of a node
 The PlayerList has the following methods
+
 **initaliser** to set up an empty PlayerList
+
 **is_empty** to check if the list is empty
+
 **insert_at_head** to insert a new player to the top of the list
+
 **insert_at_tail** to insert a new player to the bottom of the list
+
 **delete_from_the_head** to delete the top most player from the list
+
 **delete_from_the_tail** to delete the last player from the list
+
 **__iter__** method to iterate through the PlayerList moving forward from the Head to the Tail
+
 **__reversed__** method to iterate through the PlayerList moving in reverse from the Tail to the Head
+
 **__len__** method to return the size of the PlayerList, this method has been optimised 
         by adding a property "size" in the PlayerList that keeps track of inserts and deletes as they happen. 
         By doing so we same a call to iterate through the entire list to get the lenght of the PlayerList.
