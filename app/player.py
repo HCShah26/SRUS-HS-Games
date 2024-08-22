@@ -13,16 +13,37 @@ class Player:
     """
 
     def __init__(self, unique_id: str, player_name: str) -> None:
+        """
+        Initialise the Player object
+        :arguments
+        :param unique_id:
+        :param player_name:
+        """
         self._uid = unique_id
         self._player_name = player_name
 
     @property
     def uid(self) -> str:
+        """
+        Gets the Unique ID of Player
+        :return:
+            str: Unique IF of Player
+        """
         return self._uid
 
     @property
     def name(self) -> str:
+        """
+        Gets the Player Name
+        :return:
+            str: Player name
+        """
         return self._player_name
 
     def __str__(self) -> str:
+        """
+            Prints the Player object
+        :return:
+            str: A formatted string of the Player object
+        """
         return f"Player ID: {self._uid}, Name: {self._player_name}"
