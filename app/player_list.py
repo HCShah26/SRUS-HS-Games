@@ -6,6 +6,7 @@ class PlayerList:
     """
     An implementation of double linked list to manage list of players
     """
+
     def __init__(self):
         """
         Initialise an empty PlayerList with no nodes
@@ -43,7 +44,7 @@ class PlayerList:
             _newplayer.next = self._head
             self._head.prev = _newplayer
             self._head = _newplayer
-        self._size += 1 #increase size 1 on successful insertion of player into the list
+        self._size += 1  # increase size 1 on successful insertion of player into the list
 
     def insert_at_tail(self, player: Player):
         """
@@ -60,8 +61,7 @@ class PlayerList:
             _newplayer.prev = self._tail
             self._tail.next = _newplayer
             self._tail = _newplayer
-        self._size += 1 #increase size 1 on successful insertion of player into the list
-
+        self._size += 1  # increase size 1 on successful insertion of player into the list
 
     def delete_from_head(self):
         """
@@ -76,7 +76,7 @@ class PlayerList:
             if self._head:
                 """ Head node exist, set the prev of the head node to None"""
                 self._head.prev = None
-                self._size -= 1 #decrease size 1 on successful insertion of player into the list
+                self._size -= 1  # decrease size 1 on successful insertion of player into the list
 
     def delete_from_tail(self):
         """
@@ -91,7 +91,66 @@ class PlayerList:
             if self._tail:
                 """ Tail node exist, set the prev of the head node to None"""
                 self._tail.next = None
-                self._size -= 1 #decrease size 1 on successful insertion of player into the list
+                self._size -= 1  # decrease size 1 on successful insertion of player into the list
+
+    def delete_by_key(self, key):
+        _isDeleted: bool = False
+
+        deletePlayer: PlayerNode = self.search_by_key(key)
+
+        if deletePlayer:
+            if deletePlayer == self._head:
+                # Delete player node deletion at Head
+                self._head = deletePlayer.next
+                self._prev = None
+                _isDeleted = True
+
+            elif deletePlayer == self._tail:
+                # Delete player node deletion at Tail
+                self._tail = deletePlayer.prev
+                self._tail.next = None
+                _isDeleted = True
+
+            else:
+                # Delete player node somewhere in the middle of the list
+                deletePlayer.next.prev = deletePlayer.prev
+                deletePlayer.prev.next = deletePlayer.next
+                deletePlayer.next = None
+                deletePlayer.prev =None
+                _isDeleted = True
+
+        if _isDeleted:
+            self._size -= 1
+
+    def find(self, player: Player, searchByKey: bool ) -> PlayerNode:
+        if searchByKey:
+            return self.search_by_key(player.uid)
+        else:
+            return self.search_by_name(player.name)
+    def search_by_key(self, key) -> PlayerNode:
+        if self.is_empty():
+            raise Exception("List is empty")
+
+        current: PlayerNode = self._head
+
+        while current:
+            if current.key == key:
+                return current
+            else:
+                current = current.next
+
+    def search_by_name(self, playerName) -> PlayerNode:
+        if self.is_empty():
+            raise Exception("List is empty")
+
+        current: PlayerNode = self._head
+
+        while current:
+            if current.player.name == playerName:
+                return current
+            else:
+                current = current.next
+
 
     def __iter__(self):
         """
@@ -100,6 +159,7 @@ class PlayerList:
             key: The unique identifier of the node, ideally should return the whole node,
                  but for testing purposes
         """
+
         current = self._head
         while current:
             yield current
