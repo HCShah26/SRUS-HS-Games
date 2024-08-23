@@ -24,6 +24,14 @@ The **PlayerList** has the following methods
 
 **delete_from_the_tail** to delete the last player from the list
 
+**delete_by_key** to delete a specific player node
+
+**search_by_key** to find a player node by Key (UID) value
+
+**search_by_name** to find a player node by player name
+
+**find** to find player node by taking Player object and searchByKey: bool, and will call either **search_by_key** or **search_by_name**
+
 **__iter__** method to iterate through the PlayerList moving forward from the Head to the Tail
 
 **__reversed__** method to iterate through the PlayerList moving in reverse from the Tail to the Head
