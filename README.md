@@ -6,13 +6,13 @@ The **PlayerList** stores a list **PlayerNodes** which all have next and a previ
 
 The **PlayerNode** stores the **Player** data (Unique Identifier and Name)
 
-###Player
+### Player
 The **Player** class has an initialiser method and two getters and a print method
 
-###PlayeNode
+### PlayeNode
 The **PlayerNode** has an initialise method and the getters and setters methods and also a print method to display the contents of a node
 
-###PLayerList
+### PLayerList
 The **PlayerList** has the following methods
 
 **initaliser** to set up an empty PlayerList
