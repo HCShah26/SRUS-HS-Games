@@ -2,24 +2,20 @@ from app.player import Player
 from app.player_node import PlayerNode
 from typing import Optional
 
-class NodeNotFoundError(Exception):
-    """Raised when a node with a specific key is not found."""
-    pass
 
 class PlayerList:
     """
         An implementation of double linked list to manage list of players
+
+        Attributes:
+            _head (PlayerNode): The first node in the PlayerList.
+            _tail (PlayerNode): The last node in the PlayerList.
+            _size (int): Keeps track of the number of nodes in the list.
     """
 
     def __init__(self):
         """
         Initialise an empty PlayerList with no nodes
-        :param
-            _head: Keeps track of the first item in the PlayerNode
-            _tail: Keeps track of the last item in the PlayerNode
-            _size: counter to keep track of the number of nodes in this list.
-                   (This makes the code more efficient when the list size gets bigger
-                    as the length method does not need to iterate through the list to get its size.)
         """
         self._head: PlayerNode = None
         self._tail: PlayerNode = None
@@ -27,17 +23,18 @@ class PlayerList:
 
     def is_empty(self) -> bool:
         """
-            Checks if the first node is null in the PlayerList, returns true if it is empty, false otherwise
+        Checks if the PlayerList is empty.
     
-            :return: True if the list is empty, false otherwise
+        Returns:
+            bool: True if the list is empty, False otherwise.
         """
         return self._size == 0
 
     def insert_at_head(self, player: Player):
         """
-            Inserts a new node at the head of the list
+        Inserts a new player node at the head of the list.
     
-            :param player: The player object is inserted into the list at the top
+        Args: player (Player): The player object is inserted into the list at the top.
         """
         new_player: PlayerNode = PlayerNode(player)
 
@@ -55,9 +52,9 @@ class PlayerList:
 
     def insert_at_tail(self, player: Player):
         """
-            Inserts a new node at the tail of the list
+        Inserts a new player node at the tail of the list.
     
-            :param playerNode: The player object is inserted into the list at the bottom
+        Args: player (Player): The player object is inserted into the list at the bottom.
         """
         new_player: PlayerNode = PlayerNode(player)
         if self.is_empty():
@@ -73,9 +70,10 @@ class PlayerList:
 
     def delete_from_head(self):
         """
-            Deletes the top most node (head node) from the list
+        Deletes the top most node (head node) from the list
     
-            :param playerNode: The player object is deleted from the top of the list
+        Raises:
+            IndexError: If the list is empty.
         """
         if self.is_empty():
             # Empty list -> Raise exception
@@ -89,9 +87,10 @@ class PlayerList:
 
     def delete_from_tail(self):
         """
-            Deletes the bottom most node (tail node) from the list
+        Deletes the bottom most node (tail node) from the list.
     
-            :param playerNode: The player object is deleted from the bottom of the list
+        Raises:
+            IndexError: If the list is empty.
         """
         if self.is_empty():
             # Empty list -> Raise exception
@@ -105,9 +104,13 @@ class PlayerList:
 
     def delete_by_key(self, key):
         """
-        Delete a node by its key.
+        Delete a player node by its key.
 
-        :param key: The key of the node to be deleted.
+        Args: key: The key of the node to be deleted.
+
+        Raises:
+            IndexError: If the list is empty.
+            KeyError: If no node is found with the given key.
         """
         is_deleted: bool = False
 
@@ -123,7 +126,7 @@ class PlayerList:
             if deleted_player == self._head:
                 # Delete player node deletion at Head
                 self._head = deleted_player.next
-                self._prev = None
+                self._head.prev = None
                 is_deleted = True
 
             elif deleted_player == self._tail:
@@ -137,7 +140,7 @@ class PlayerList:
                 deleted_player.next.prev = deleted_player.prev
                 deleted_player.prev.next = deleted_player.next
                 deleted_player.next = None
-                deleted_player.prev =None
+                deleted_player.prev = None
                 is_deleted = True
 
         if is_deleted:
@@ -145,23 +148,29 @@ class PlayerList:
 
     def find(self, player: Player, searchByKey: bool ) -> PlayerNode:
         """
-            Find a player node by key or name.
+        Finds a player node by key or name.
     
-            :param player: The Player object used for searching.
-            :param search_by_key: True to search by key, False to search by name.
-            :return: The found PlayerNode.
+        Args:
+            player (Player): The Player object used for searching.
+            search_by_key (bool): True to search by key, False to search by name.
+
+        Returns:
+            PlayerNode: The found player node.
         """
-        if searchByKey:
+        if search_by_key:
             return self.search_by_key(player.uid)
         else:
             return self.search_by_name(player.name)
         
     def search_by_key(self, key) -> Optional[PlayerNode]:
         """
-            Search for a node by its key.
+        Searches for a player node by its key.
 
-            :param key: The key to search for.
-            :return: The found PlayerNode.
+        Args:
+            key: The key to search for player node.
+
+        Returns:
+            Optional[PlayerNode]: The found player node, or None if not found.
         """
         if self.is_empty():
             return None # Indicates no Players Nodes (Empty list)
@@ -176,10 +185,13 @@ class PlayerList:
 
     def search_by_name(self, playerName) -> Optional[PlayerNode]:
         """
-            Search for a node by player name.
+        Searches for a player node by player name.
 
-            :param player_name: The name of the player to search for.
-            :return: The found PlayerNode.
+        Args:
+            player_name: The name of the player to search for.
+
+        Returns:
+            Optional[PlayerNode]: The found player node, or None if not found.
         """
         if self.is_empty():
             return None # Indicates no Players Nodes (Empty list)
@@ -209,9 +221,10 @@ class PlayerList:
 
     def __reversed__(self):
         """
-        Iterates in reverse order over the Player Nodes from Tail to Head
+        Iterates in reverse order over the Player Nodes from Tail to Head.
 
-        :return: An iterator of Player Nodes
+        Yields:
+            PlayerNode: The previous player node in the list.
         """
         current = self._tail
         while current:
@@ -220,8 +233,9 @@ class PlayerList:
 
     def __len__(self):
         """
-        Returns the size of the list (No iterations required to return the length)
-        :return:
-            int: Integer value representing the size of the list
+        Returns the size of the list (No iterations required to return the length).
+
+        Returns:
+            int: Integer value representing the size of the list.
         """
         return self._size
